@@ -98,4 +98,35 @@ export class UserService {
       );
     }
   }
+
+  async getProfileDetails(userId: any) {
+    try {
+      const user = await this.prisma.userconfig.findUnique({
+        where: {
+          userconfigId: userId,
+        },
+        select: {
+          userlogin: {
+            select: {
+              email: true,
+            },
+          },
+          firstname: true,
+          lastname: true,
+          profileImageUrl: true,
+          title: true,
+          bioDescription: true,
+        },
+      });
+      return user;
+    } catch (error) {
+      throw new HttpException(
+        {
+          message:
+            'Es ist ein Fehler bei der Abfrage aufgetreten. Bitte versuche es später erneut.',
+        },
+        500,
+      );
+    }
+  }
 }

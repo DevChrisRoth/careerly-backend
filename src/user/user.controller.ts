@@ -1,4 +1,4 @@
-import { Body, Controller, Post, Req, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UseGuards } from '@nestjs/common';
 import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 import { LocalAuthGuard } from 'src/auth/local-auth.guard';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -41,5 +41,11 @@ export class UserController {
   @Post('profile/delete') //✅
   async deleteProfile(@Req() req: any) {
     await this.userService.deleteProfile(req.user.id);
+  }
+
+  @UseGuards(AuthenticatedGuard)
+  @Get('profile') //✅
+  async getProfileDetails(@Req() req: any) {
+    await this.userService.getProfileDetails(req.user.id);
   }
 }
