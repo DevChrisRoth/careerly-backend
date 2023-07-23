@@ -50,6 +50,9 @@ export class CareerService {
             userloginId: user.userlogin.userloginId,
           },
         },
+        orderBy: {
+          timeFrom: 'desc',
+        },
       });
       return career;
     } catch (error) {
