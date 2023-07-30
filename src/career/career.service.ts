@@ -40,8 +40,14 @@ export class CareerService {
         where: {
           name: username,
         },
-        include: {
+        select: {
           userlogin: true,
+          bioDescription: true,
+          profileImageUrl: true,
+          name: true,
+          title: true,
+          firstname: true,
+          lastname: true,
         },
       });
       const career = await this.prisma.career.findMany({
@@ -50,11 +56,18 @@ export class CareerService {
             userloginId: user.userlogin.userloginId,
           },
         },
+        select: {
+          companyName: true,
+          jobDesc: true,
+          jobTitle: true,
+          timeFrom: true,
+          timeTo: true,
+        },
         orderBy: {
           timeFrom: 'desc',
         },
       });
-      return career;
+      return { user, career };
     } catch (error) {
       throw new HttpException(
         {
