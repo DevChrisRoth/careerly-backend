@@ -48,6 +48,7 @@ async function bootstrap() {
       signed: true,
       httpOnly: false,
       encode: (val) => val,
+      sameSite: 'none',
     },
     store: sessionStore,
   });
