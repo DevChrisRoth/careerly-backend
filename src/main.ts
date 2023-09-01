@@ -48,7 +48,6 @@ async function bootstrap() {
       signed: true,
       httpOnly: false,
       encode: (val) => val,
-      secure: process.env.NODE_ENV === 'production' ? true : 'auto',
     },
     store: sessionStore,
   });
