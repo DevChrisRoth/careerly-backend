@@ -54,7 +54,10 @@ async function bootstrap() {
   app.use(sessionMiddleware);
   app.use(passport.initialize());
   app.use(passport.session());
-  app.enableCors();
+  app.enableCors({
+    origin: ['http://localhost:8080', 'https://matchly.me'],
+    credentials: true,
+  });
   app.use(compression({ level: 7, strategy: 1 }));
   const prismaService = app.get(PrismaService);
   await prismaService.enableShutdownHooks(app);
