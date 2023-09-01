@@ -46,7 +46,7 @@ async function bootstrap() {
     name: 'careerlySessionId',
     cookie: {
       signed: true,
-      httpOnly: true,
+      httpOnly: false,
       encode: (val) => val,
       secure: process.env.NODE_ENV === 'production' ? true : 'auto',
     },
