@@ -45,7 +45,6 @@ async function bootstrap() {
     saveUninitialized: false,
     name: 'careerlySessionId',
     cookie: {
-      signed: true,
       httpOnly: false,
       encode: (val) => val,
       sameSite: 'none',
